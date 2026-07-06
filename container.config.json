@@ -1,0 +1,32 @@
+{
+  "containerPort": 80,
+  "dockerfilePath": "Dockerfile",
+  "buildDir": "",
+  "minNum": 0,
+  "maxNum": 5,
+  "cpu": 1,
+  "mem": 2,
+  "policyType": "cpu",
+  "policyThreshold": 80,
+  "policyDetails": [
+    {
+      "PolicyType": "cpu",
+      "PolicyThreshold": 80
+    },
+    {
+      "PolicyType": "mem",
+      "PolicyThreshold": 80
+    }
+  ],
+  "envParams": {
+    "COZE_CLIENT_ID": "1157426715000",
+    "COZE_PUBLIC_KEY_ID": "xuEc-T9LmBat8ZqWlSQ4puj7JVvfA9tIfOFlIuhiI_g"
+  },
+  "customLogs": "stdout",
+  "initialDelaySeconds": 2,
+  "dataBaseName": "eathealthy",
+  "executeSQLs": [
+    "CREATE DATABASE IF NOT EXISTS eathealthy CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;",
+    "USE eathealthy;"
+  ]
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>食事半功倍 - 后端服务</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; color: #333; }
+    h1 { color: #4CAF50; }
+    .api-list { background: #f5f5f5; padding: 16px; border-radius: 8px; }
+    .api-item { margin: 8px 0; }
+    .api-path { font-family: monospace; color: #4CAF50; }
+    .alert { background: #fff3cd; border: 1px solid #ffc107; padding: 12px; border-radius: 8px; margin: 16px 0; }
+  </style>
+</head>
+<body>
+  <h1>食事半功倍 — 后端服务</h1>
+
+  <div class="alert">
+    <strong>提示：</strong> 此服务仅面向微信小程序端调用，请使用 <code>wx.cloud.callContainer</code> 访问 API。
+  </div>
+
+  <div class="api-list">
+    <h3>可用 API</h3>
+    <div class="api-item"><span class="api-path">GET /api/ping</span> — 健康检查</div>
+    <div class="api-item"><span class="api-path">GET /api/count</span> — 获取计数器</div>
+    <div class="api-item"><span class="api-path">POST /api/count</span> — 更新计数器</div>
+    <div class="api-item"><span class="api-path">GET /api/wx_openid</span> — 获取微信 OpenID</div>
+    <div class="api-item"><span class="api-path">POST /api/coze/ask</span> — Coze AI 对话</div>
+    <div class="api-item"><span class="api-path">POST /api/diet</span> — 保存饮食记录</div>
+    <div class="api-item"><span class="api-path">GET /api/diet?date=YYYYMMDD</span> — 获取饮食记录</div>
+    <div class="api-item"><span class="api-path">POST /api/training</span> — 保存训练日志</div>
+    <div class="api-item"><span class="api-path">GET /api/training?date=YYYYMMDD</span> — 获取训练日志</div>
+    <div class="api-item"><span class="api-path">POST /api/points</span> — 增减积分</div>
+    <div class="api-item"><span class="api-path">GET /api/points</span> — 获取积分</div>
+    <div class="api-item"><span class="api-path">POST /api/weight</span> — 保存体重</div>
+    <div class="api-item"><span class="api-path">GET /api/weight?days=N</span> — 获取体重记录</div>
+  </div>
+</body>
+</html>

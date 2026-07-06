@@ -1,0 +1,24 @@
+{
+  "name": "eathealthy-server",
+  "version": "1.0.0",
+  "description": "食事半功倍 - 微信云托管 Express 后端（Coze AI代理 + 数据CRUD）",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.2",
+    "sequelize": "^6.8.0",
+    "uuid": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

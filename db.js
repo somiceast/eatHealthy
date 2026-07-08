@@ -1,20 +1,35 @@
 /**
- * 食事半功倍 — Sequelize 数据库模型定义
+ * 健多食广Fit — Sequelize 数据库模型定义
  *
  * 环境变量要求（云托管自动注入）:
  *   MYSQL_ADDRESS  — MySQL 主机:端口（如 "10.0.0.1:3306"）
  *   MYSQL_USERNAME — MySQL 用户名
  *   MYSQL_PASSWORD — MySQL 密码
  *
- * 数据库名: eathealthy（云托管 MySQL 实例中创建）
+ * 数据库名: eathealthy（首次启动自动创建）
  */
 
+const mysql2 = require('mysql2/promise');
 const { Sequelize, DataTypes } = require('sequelize');
 
 const { MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_ADDRESS = '' } = process.env;
 const [host, port] = MYSQL_ADDRESS.split(':');
+const DB_NAME = 'eathealthy';
 
-const sequelize = new Sequelize('eathealthy', MYSQL_USERNAME, MYSQL_PASSWORD, {
+/** 确保数据库存在（云托管 MySQL 实例默认无此库，首次部署时自动创建） */
+async function ensureDatabase() {
+  const conn = await mysql2.createConnection({
+    host,
+    port: parseInt(port) || 3306,
+    user: MYSQL_USERNAME,
+    password: MYSQL_PASSWORD,
+  });
+  await conn.query(`CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`);
+  await conn.end();
+  console.log(`[DB] 数据库 \`${DB_NAME}\` 已就绪`);
+}
+
+const sequelize = new Sequelize(DB_NAME, MYSQL_USERNAME, MYSQL_PASSWORD, {
   host,
   port: parseInt(port) || 3306,
   dialect: 'mysql',
@@ -128,6 +143,7 @@ const WeightLog = sequelize.define('WeightLog', {
 // ================================================================
 
 async function init() {
+  await ensureDatabase();        // 云托管首次部署时自动建库
   await sequelize.sync({ alter: true });
   console.log('[DB] 所有模型已同步');
 }
